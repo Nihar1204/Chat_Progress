@@ -8,20 +8,16 @@ const EmployeeStats = ({ onDocumentClick }) => {
       { name: "A", color: "#FEF08A", value: 50 },
       { name: "B", color: "#7DD3FC", value: 30 },
       { name: "C", color: "#A78BFA", value: 20 },
+      { name: "D", color: "#FBBF24", value: 15 },
+      { name: "E", color: "#F87171", value: 25 },
+      { name: "F", color: "#34D399", value: 35 },
+      { name: "G", color: "#A78BFA", value: 40 },
+      { name: "H", color: "#FB7185", value: 45 },
     ],
     overallProgress: 10,
   };
 
   const documents = [
-    {
-      id: 12,
-      name: "Nihar",
-      startedOn: "2025-06-06T15:30:45",
-      assistedBy: "Hariesh",
-      assistedOn: "2025-06-10T15:30:45",
-      docName: "abc1",
-      status: "Fixed",
-    },
     {
       id: 12,
       name: "Nihar",
@@ -52,19 +48,37 @@ const EmployeeStats = ({ onDocumentClick }) => {
     {
       id: 12,
       name: "Nihar",
-      startedOn: "2025-06-06T15:30:45",
+      startedOn: "2025-06-07T15:30:45",
+      assistedBy: "Hariesh",
+      assistedOn: "2025-06-11T15:30:45",
+      docName: "abc5",
+      status: "Fixed",
+    },
+    {
+      id: 12,
+      name: "Nihar",
+      startedOn: "2025-06-08T15:30:45",
       assistedBy: "-",
       assistedOn: "-",
-      docName: "abc3",
+      docName: "abc6",
+      status: "In Progress",
+    },
+    {
+      id: 12,
+      name: "Nihar",
+      startedOn: "2025-06-09T15:30:45",
+      assistedBy: "-",
+      assistedOn: "-",
+      docName: "abc7",
       status: "Error",
     },
     {
       id: 12,
       name: "Nihar",
-      startedOn: "2025-06-06T15:30:45",
+      startedOn: "2025-06-10T15:30:45",
       assistedBy: "-",
       assistedOn: "-",
-      docName: "abc4",
+      docName: "abc8",
       status: "Not Started",
     },
   ];
@@ -89,7 +103,7 @@ const EmployeeStats = ({ onDocumentClick }) => {
       <div className="stats-charts">
         <div className="chart-section">
           <h3>{reportData.name}</h3>
-          <div className="chart-container">
+          <div className="chart-container-with-legend">
             <div className="bar-chart">
               <div className="chart-bars">
                 <div className="bar-group">
@@ -153,17 +167,17 @@ const EmployeeStats = ({ onDocumentClick }) => {
                   <span className="bar-label">Not Started</span>
                 </div>
               </div>
-              <div className="chart-legend">
-                {reportData.categories.map((cat, index) => (
-                  <div key={index} className="legend-item">
-                    <div
-                      className="legend-color"
-                      style={{ backgroundColor: cat.color }}
-                    ></div>
-                    <span>{cat.name}</span>
-                  </div>
-                ))}
-              </div>
+            </div>
+            <div className="chart-legend-vertical">
+              {reportData.categories.map((cat, index) => (
+                <div key={index} className="legend-item-vertical">
+                  <div
+                    className="legend-color"
+                    style={{ backgroundColor: cat.color }}
+                  ></div>
+                  <span>{cat.name}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -183,44 +197,46 @@ const EmployeeStats = ({ onDocumentClick }) => {
         </div>
       </div>
 
-      <div className="documents-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Id</th>
-              <th>Started on</th>
-              <th>Assisted by</th>
-              <th>Assisted on</th>
-              <th>Doc name</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {documents.map((doc, index) => (
-              <tr
-                key={index}
-                onClick={() => onDocumentClick(doc)}
-                className="clickable-row"
-              >
-                <td>{doc.name}</td>
-                <td>{doc.id}</td>
-                <td>{doc.startedOn}</td>
-                <td>{doc.assistedBy}</td>
-                <td>{doc.assistedOn}</td>
-                <td>{doc.docName}</td>
-                <td>
-                  <span
-                    className="status-badge"
-                    style={{ color: getStatusColor(doc.status) }}
-                  >
-                    {doc.status}
-                  </span>
-                </td>
+      <div className="documents-table-container">
+        <div className="documents-table-body">
+          <table className="documents-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Started on</th>
+                <th>Assisted by</th>
+                <th>Assisted on</th>
+                <th>Doc name</th>
+                <th>Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {documents.map((doc, index) => (
+                <tr
+                  key={index}
+                  onClick={() => onDocumentClick(doc)}
+                  className="clickable-row"
+                >
+                  <td>{doc.name}</td>
+                  <td>{doc.id}</td>
+                  <td>{doc.startedOn}</td>
+                  <td>{doc.assistedBy}</td>
+                  <td>{doc.assistedOn}</td>
+                  <td>{doc.docName}</td>
+                  <td>
+                    <span
+                      className="status-badge"
+                      style={{ color: getStatusColor(doc.status) }}
+                    >
+                      {doc.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

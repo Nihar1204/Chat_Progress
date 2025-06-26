@@ -10,7 +10,7 @@ function App() {
   // const [showLandingPage, setShowLandingPage] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userName, setUserName] = useState("Erik"); // Default fallback
-  const [userType, setUserType] = useState("vp"); // 'employee' or 'vp'
+  const [userType, setUserType] = useState("employee"); // 'employee' or 'vp'
   const [chatHistory, setChatHistory] = useState([
     // Placeholder data - replace with backend data
     { id: 1, title: "Chat 1" },
